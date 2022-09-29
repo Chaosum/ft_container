@@ -6,7 +6,7 @@
 /*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:33:19 by matthieu          #+#    #+#             */
-/*   Updated: 2022/09/27 17:42:19 by matthieu         ###   ########.fr       */
+/*   Updated: 2022/09/29 17:07:56 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -305,7 +305,7 @@ namespace ft
 			_data.destroy(_data + i);
 			memmove(_data + i , _data + i + 1, sizeof(value_type) * (size - i - 1));
 			_size--;
-			return (_data + i)
+			return (_data + i);
 		}
 		iterator erase( iterator first, iterator last )
 		{
