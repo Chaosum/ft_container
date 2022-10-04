@@ -6,7 +6,7 @@
 /*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:33:19 by matthieu          #+#    #+#             */
-/*   Updated: 2022/09/29 17:07:56 by matthieu         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:14:06 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,7 +248,7 @@ namespace ft
 			if (_size + 1 >= _capacity)
 			{
 				reserve(_capacity * 2);
-				_capacity = capacity * 2;
+				_capacity = _capacity * 2;
 			}
 			if (i < size)
 				memmove(_data + i + 1, data + i, sizeof(value_type) * (size - i));
@@ -261,7 +261,7 @@ namespace ft
 			while (_size + count >= _capacity)
 			{
 				reserve(_capacity * 2);
-				_capacity = capacity * 2;
+				_capacity = _capacity * 2;
 			}
 			if (i < size)
 				memmove(_data + i + count, data + i, sizeof(value_type) * (size - i));
@@ -282,7 +282,7 @@ namespace ft
 			while (_size + count >= _capacity)
 			{
 				reserve(_capacity * 2);
-				_capacity = capacity * 2;
+				_capacity = _capacity * 2;
 			}
 			if (i < size)
 				memmove(_data + i + count, data + i, sizeof(value_type) * (size - i));
@@ -328,14 +328,65 @@ namespace ft
 
 		void push_back( const T& value );
 		{
+			if (_size + 1 >= _capacity)
+			{
+				reserve(_capacity * 2);
+				_capacity = _capacity * 2;
+			}
+			iterator it = _data + _size;
+			*it = value;
+			_size++;
 		}
 
-		void pop_back();
+		void pop_back()
+		{
+			if (_size == 0)
+				return ;
+			_alloc.destroy(_data + _size - 1);
+			_size--;
+		}
 
-		void resize( size_type count );
-		void resize( size_type count, T value = T() );
+		void resize(size_type count, T value = T())
+		{
+			if (_size < count)
+			{
+				while (_capacity < count)
+				{
+					reserve(_capacity * 2);
+					_capacity = _capacity * 2;
+				}
+				size_type i = _size;
+				while (i < count)
+				{
+					_alloc.construct(_data + i, value);
+					i++;
+				}
+				_size = count;
+			}
+			else if (_size > count)
+			{
+				while (_size != count)
+					pop_back();
+			}
+		}
 
-		void swap( vector& other );
+		void swap( vector& other )
+		{
+			pointer		tmp_data = this->_data;
+			size_type	tmp_size = this->_size;
+			size_type	tmp_capacity = this->_capacity;
+			Allocator	&tmp_alloc = this->_alloc;
+
+			this->_data = other->_data;
+			this->_size = other->_size;
+			this->_capacity = other->_capacity ;
+			this->_alloc = other->_alloc;
+
+			other->_data = tmp_data;
+			other->_size = tmp_size;
+			other->_capacity = tmp_capacity;
+			other->_alloc = tmp_alloc;
+		}
 
 		friend bool operator==( const std::vector<T,Alloc>& lhs, const std::vector<T,Alloc>& rhs );
 		friend bool operator!=( const std::vector<T,Alloc>& lhs, const std::vector<T,Alloc>& rhs );
