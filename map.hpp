@@ -6,7 +6,7 @@
 /*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:30:34 by matthieu          #+#    #+#             */
-/*   Updated: 2022/11/16 17:16:44 by matthieu         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:14:07 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ template<
 > class map
 {
 	//member type
-	typedef	Key	key_type;
-	typedef	T	mapped_type;
+	typedef	Key	key_type; //type de la key
+	typedef	T	mapped_type; //type de la la var stocker
 	typedef	std::pair<const Key, T>	value_type;
 	typedef	std::size_t	size_type;
 	typedef	std::ptrdiff_t	difference_type;
@@ -41,4 +41,17 @@ template<
 	typedef	ft::reverse_iterator<iterator>				reverse_iterator;
 	typedef	ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
+	explicit map (const key_compare& comp = key_compare(),	const allocator_type& alloc = allocator_type())
+	{
+		
+	}
+	template <class InputIterator>
+	map (InputIterator first, InputIterator last,	const key_compare& comp = key_compare(),	const allocator_type& alloc = allocator_type())
+	{
+	}
+	map (const map& x)
+	{
+	}
+	~map()
+	map	&operator=()
 };
