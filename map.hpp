@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:30:34 by matthieu          #+#    #+#             */
-/*   Updated: 2022/12/05 15:14:07 by matthieu         ###   ########.fr       */
+/*   Updated: 2022/12/08 13:06:38 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ template<
 	typedef	ft::reverse_iterator<iterator>				reverse_iterator;
 	typedef	ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
+	//Member functions
 	explicit map (const key_compare& comp = key_compare(),	const allocator_type& alloc = allocator_type())
 	{
 		
@@ -54,4 +55,34 @@ template<
 	}
 	~map()
 	map	&operator=()
+		//operator=
+	//Element access
+		//at
+		//operator[]
+	//Iterators
+		//begin
+		//end
+		//rbegin
+		//rend
+	//Capacity
+		//empty
+		//size
+		//max_size
+	//Modifiers
+		//clear
+		//insert
+		//erase
+		//swap
+	//Lookup
+		//count
+		//find
+		//equal_range
+		//lower_bound
+		//upper_bound
+	//Observers
+		//key_comp
+		//value_comp
+	//Non-member functions
+		//std::swap
+		//operator==
 };
