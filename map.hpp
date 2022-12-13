@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:30:34 by matthieu          #+#    #+#             */
-/*   Updated: 2022/12/12 22:00:18 by mservage         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:45:09 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,33 @@ public:
 		return (*this);
 	}
 	//Element access
-// T& at( const Key& key )
-// {}
-// const T& at( const Key& key ) const
-// {}
-		// operator[]
+		// T& at( const Key& key )
+		// {
+		// }
+		// const T& at( const Key& key ) const
+		// {
+		// }
+		// mapped_type	&operator[]( const Key& key )
+		// {
+		// }
 	//Iterators
 		//begin
 		//end
 		//rbegin
 		//rend
 	//Capacity
-		//empty
-		//size
-		//max_size
+	bool empty() const
+	{
+		return (_tree.getNbNodes() == 0);
+	}
+	size_type size() const
+	{
+		return (_tree.getNbNodes());
+	}
+	size_type max_size() const
+	{
+		return (_tree.getAlloc().max_size());
+	}
 	//Modifiers
 		//clear
 		//insert

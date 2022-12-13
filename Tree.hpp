@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:23:26 by mservage          #+#    #+#             */
-/*   Updated: 2022/12/12 18:31:34 by mservage         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:37:44 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ namespace ft
 			typedef typename T::first_type _Key;
 			typedef typename T::second_type _mapped_type;
 			typedef typename std::size_t _size_type;
-			Node *_root;
 			Allocator	_alloc;
 			_size_type _nb_nodes;
 			Compare const _comp;
@@ -40,7 +39,7 @@ namespace ft
 			Node *_parent;
 			_value_type _content;
 			_size_type _height;
-			int _balance_factor;
+			_size_type _balance_factor;
 		public:
 			Node()
 			{
@@ -71,7 +70,7 @@ namespace ft
 			~Node()
 			{
 			}
-		}
+		};
 		Tree()
 		{
 			_comp = Compare();
@@ -91,5 +90,19 @@ namespace ft
 		{
 			//clean tree
 		}
+		Allocator const &getAlloc() const
+		{
+			return (_alloc);
+		}
+		_size_type const &getNbNodes() const
+		{
+			return (_nb_nodes);
+		}
+		Compare const getComp() const
+		{
+			return (_comp);
+		}
+	private:
+		Node *_root;
 	};
 }
