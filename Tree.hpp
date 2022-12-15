@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:23:26 by mservage          #+#    #+#             */
-/*   Updated: 2022/12/13 18:37:44 by mservage         ###   ########.fr       */
+/*   Updated: 2022/12/15 19:57:27 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,12 @@ namespace ft
 		Compare const getComp() const
 		{
 			return (_comp);
+		}
+		Node	*_insert(value_type const &content)
+		{
+			if (_root == NULL) //first node
+				return (root = createNode());
+			_comp
 		}
 	private:
 		Node *_root;
