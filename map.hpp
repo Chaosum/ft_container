@@ -6,7 +6,7 @@
 /*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:30:34 by matthieu          #+#    #+#             */
-/*   Updated: 2022/12/13 18:45:09 by mservage         ###   ########.fr       */
+/*   Updated: 2022/12/15 14:17:23 by mservage         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,38 @@ public:
 		return (_tree.getAlloc().max_size());
 	}
 	//Modifiers
-		//clear
-		//insert
-		//erase
-		//swap
+	//clear
+	//Erases all elements from the container. After this call, size() returns zero.
+	void clear()
+	{
+	}
+	//insert
+	//Inserts value.
+	std::pair<iterator, bool> insert( const value_type& value )
+	{
+	}
+	//Inserts elements from range [first, last). If multiple elements in the range have keys that compare
+	//equivalent, it is unspecified which element is inserted (pending LWG2844).
+	template< class InputIt >
+	void insert( InputIt first, InputIt last )
+	{
+	}
+	//erase
+	//Removes the element at pos.
+	iterator erase( iterator pos )
+	{
+	}
+	//Removes the element (if one exists) with the key equivalent to key.
+	size_type erase( const Key& key )
+	{
+	}
+	//swap
+	//Exchanges the contents of the container with those of other.
+	//Does not invoke any move, copy, or swap operations on individual elements.
+	//All iterators and references remain valid. The past-the-end iterator is invalidated.
+	void swap( map& other )
+	{
+	}
 	//Lookup
 		//count
 		//find
