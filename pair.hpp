@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pair.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:52:15 by mservage          #+#    #+#             */
-/*   Updated: 2022/12/12 21:07:19 by mservage         ###   ########.fr       */
+/*   Updated: 2023/01/07 00:48:46 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ namespace ft
 	public:
 		typedef T1	first_type;
 		typedef	T2	second_type;
+		first_type	first;
+		second_type	second;
 		Pair()
 		{
 			first = first_type();
@@ -46,9 +48,6 @@ namespace ft
 		friend bool operator>(pair const & lhs, pair const & rhs) { return lhs.first > rhs.first && lhs.second > rhs.second; }
 		friend bool operator<=(pair const & lhs, pair const & rhs) { return lhs.first <= rhs.first && lhs.second <= rhs.second; }
 		friend bool operator>=(pair const & lhs, pair const & rhs) { return lhs.first >= rhs.first && lhs.second >= rhs.second; }
-	private:
-		first_type	first;
-		second_type	second;
 	};
 	template <class T1, class T2>
 	pair<T1, T2> make_pair(T1 t, T2 u)

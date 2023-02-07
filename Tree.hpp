@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Tree.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:23:26 by mservage          #+#    #+#             */
-/*   Updated: 2022/12/15 19:57:27 by mservage         ###   ########.fr       */
+/*   Updated: 2023/01/07 07:34:49 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ namespace ft
 	class Tree
 	{
 	private:
-			typedef T _value_type;
+			typedef T _value_type; //pair
 			typedef typename T::first_type _Key;
 			typedef typename T::second_type _mapped_type;
 			typedef typename std::size_t _size_type;
@@ -82,7 +82,6 @@ namespace ft
 		{
 			_comp = comp;
 			_alloc = alloc;
-			_alloc = Allocator;
 			_root = NULL;
 			_nb_nodes = 0;
 		}
@@ -102,11 +101,43 @@ namespace ft
 		{
 			return (_comp);
 		}
+		Node	*createNode(value_type const content)
+		{
+			Node temp(content);
+			Node *dest = _alloc.allocate(1);
+			_alloc.construct(dest, node);
+			return (dest);
+		}
 		Node	*_insert(value_type const &content)
 		{
 			if (_root == NULL) //first node
-				return (root = createNode());
-			_comp
+				return (_root = createNode());
+			Node *node = _root;
+			while (node != NULL)
+			{
+				if (_comp(node->_content.first , content.first))
+				{
+					if (node->_right == NULL)
+					{
+						node->_right = createNode(content);
+						node->_right->_parent = node;
+						node->_right->_balance_factor++;
+						return node->_right;
+					}
+					node = node->_right;
+				}
+				else
+				{
+					if (node->_left == NULL)
+					{
+						node->_left = createNode(content);
+						node->_left->_parent = node;
+						node->_left->_balance_factor++;
+						return node->_left;
+					}
+					node = node->_left;
+				}
+			}
 		}
 	private:
 		Node *_root;

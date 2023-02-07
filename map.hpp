@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mservage <mservage@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:30:34 by matthieu          #+#    #+#             */
-/*   Updated: 2022/12/15 19:38:24 by mservage         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:23:00 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ namespace ft
 		map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
 		{
 			_tree = _tree_type(comp, alloc);
-			//insert range
+			insert(first, last);
 		}
 		map (map const &rhs)
 		{
@@ -113,22 +113,34 @@ namespace ft
 		//Inserts value.
 		std::pair<iterator, bool> insert( const value_type& value )
 		{
-			
+			Node *iter = _tree.insert(value);
+			_tree.balance();
+			if (iter != NULL)
+				return (ft::make_pair(iter, true));
+			return (ft::make_pair(iter, false));
 		}
 		//Inserts elements from range [first, last). If multiple elements in the range have keys that compare
 		//equivalent, it is unspecified which element is inserted (pending LWG2844).
 		template< class InputIt >
 		void insert( InputIt first, InputIt last )
 		{
+			InputIt it = first;
+			while (first != last)
+			{
+				insert(it);
+				it++;
+			}
 		}
 		//erase
 		//Removes the element at pos.
 		iterator erase( iterator pos )
 		{
+			return (_tree.erase(pos));
 		}
 		//Removes the element (if one exists) with the key equivalent to key.
 		size_type erase( const Key& key )
 		{
+			return (_tree.erase(key));
 		}
 		//swap
 		//Exchanges the contents of the container with those of other.
@@ -136,37 +148,60 @@ namespace ft
 		//All iterators and references remain valid. The past-the-end iterator is invalidated.
 		void swap( map& other )
 		{
+			_tree_type temp = _tree;
+			_tree = other._tree;
+			other._tree = temp;
 		}
 					//Lookup
 		//count
 		//Returns the number of elements with key key. This is either 1 or 0 since this container does not allow duplicates
 		size_type count( const Key& key ) const
 		{
+			return _tree.getNbNodes();
 		}
 		//find
 		//Finds an element with key equivalent to key.
-		iterator find( const Key& key ){}
-		const_iterator find( const Key& key ) const{}
+		iterator find( const Key& key )
+		{
+		}
+		const_iterator find( const Key& key ) const
+		{
+		}
 		//equal_range
 		//Compares the keys to key.
-		std::pair<iterator,iterator> equal_range( const Key& key ){}
-		std::pair<const_iterator,const_iterator> equal_range( const Key& key ) const{}
+		std::pair<iterator,iterator> equal_range( const Key& key )
+		{
+		}
+		std::pair<const_iterator,const_iterator> equal_range( const Key& key ) const
+		{
+		}
 		//lower_bound
-		iterator lower_bound( const Key& key ){}
-		const_iterator lower_bound( const Key& key ) const{}
+		iterator lower_bound( const Key& key )
+		{
+		}
+		const_iterator lower_bound( const Key& key ) const
+		{
+		}
 		//upper_bound
 		//Returns an iterator pointing to the first element that is greater than key.
-		iterator upper_bound( const Key& key ){}
-		const_iterator upper_bound( const Key& key ) const{}
+		iterator upper_bound( const Key& key )
+		{
+		}
+		const_iterator upper_bound( const Key& key ) const
+		{
+		}
 					//Observers
 		//key_comp
 		//Returns the function object that compares the keys, which is a copy of this container's constructor argument comp
-		key_compare key_comp() const{}
+		key_compare key_comp() const
+		{
+		}
 		//value_comp
 		//Returns a function object that compares objects of type std::map::value_type
 		//(key-value pairs) by using key_comp to compare the first components of the pairs.
-		std::map::value_compare value_comp() const{}
-		
+		std::map::value_compare value_comp() const
+		{
+		}
 					//Non-member functions
 		//std::swap
 		//Specializes the std::swap algorithm for std::map. Swaps the contents of lhs and rhs. Calls lhs.swap(rhs)
@@ -175,11 +210,11 @@ namespace ft
 		//they have the same number of elements and each element in lhs compares equal with the element in rhs at the same position.
 	};
 	template< class Key, class T, class Compare, class Alloc >
-	void swap( ft::map<Key,T,Compare,Alloc>& lhs, std::map<Key,T,Compare,Alloc>& rhs )
+	void swap( ft::map<Key,T,Compare,Alloc>& lhs, ft::map<Key,T,Compare,Alloc>& rhs )
 	{
 	}
 	template< class Key, class T, class Compare, class Alloc >
-	bool operator==( const ft::map<Key,T,Compare,Alloc>& lhs, const std::map<Key,T,Compare,Alloc>& rhs )
+	bool operator==( const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs )
 	{
 	}
 
